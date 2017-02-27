@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns       = "http://www.w3.org/ns/widgets"
+        xmls:gap    = "http://phonegap.com/ns/1.0"
+        id          = "com.bierton.revisionapp"
+        versionCode = "1"
+        version     = "1.0.2" >
+
+  <name>Revision Notes</name>
+  <description>
+    <author href="website" email="alexanderbierton@googlemail.com">
+      Alexander Bierton
+    </author>
+  <access origin="*"/>
+
+  <preference name="keepRunning"                  value="false"/>
+  <preference name="AllowInlineMediaPlayback" 	  value="true"/>
+  <preference name="permissions"                  value="none"/>
+
+  <preference name="orientation"                  value="portrait" />
+  <preference name="target-device"                value="universal"/>
+  <preference name="fullscreen"                   value="true"/>
+  <preference name="webviewbounce"                value="true"/>
+  <preference name="prerendered-icon"             value="true"/>
+  <preference name="stay-in-webview"              value="true"/>
+  <preference name="ios-statusbarstyle"           value="black-opaque"/>
+  <preference name="detect-data-types"            value="true"/>
+  <preference name="exit-on-suspend"              value="true"/>
+  <preference name="show-splash-screen-spinner"   value="true"/>
+  <preference name="auto-hide-splash-screen"      value="true"/>
+  <preference name="disable-cursor"               value="false"/>
+  <preference name="android-installLocation"      value="auto"/>
+  <preference name="splash-screen-delay"          value="5000"/>
+
+  <plugin name="cordova-plugin-console" />
+  <plugin name="cordova-plugin-device"/>
+  <plugin name="cordova-plugin-device-orientation"/>
+  <plugin name="cordova-plugin-dialogs"/>
+  <plugin name="cordova-plugin-vibration"/>
+  <plugin name="cordova-plugin-inappbrowser"/>
+  <plugin name="cordova-plugin-network-information"/>
+  <plugin name="cordova-plugin-splashscreen"/>
+
+  <icon src="icon.png"/>
+
+  <splash src="splash.png"/>
+  <access origin="*"/>
+
+  <plugin name="cordova-plugin-whitelist" version="1" />
+      <allow-intent href="http://*/*" />
+      <allow-intent href="https://*/*" />
+      <allow-intent href="tel:*" />
+      <allow-intent href="sms:*" />
+      <allow-intent href="mailto:*" />
+      <allow-intent href="geo:*" />
+      <platform name="android">
+          <allow-intent href="market:*" />
+      </platform>
+      <platform name="ios">
+          <allow-intent href="itms:*" />
+          <allow-intent href="itms-apps:*" />
+  	</platform>
+</widget>
