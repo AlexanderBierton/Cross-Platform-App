@@ -38,24 +38,38 @@ h1 {
   box-sizing: border-box;
   text-decoration: none;
   color: White;
-  font-size: 1.5em;
-  padding-top: 20%;
+  font-size: 1.8em;
+  padding-top: 35%;
   border: #4C506D 2px solid;
 }
 #bt1 {
-  background:linear-gradient(0deg,rgba(163,37,33,0.3),rgba(163,37,33,0.3)),url("Images/Bar.jpg");
-  background-size:cover;
+  background-image: url("Images/MinBar.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 125px 125px;
+  background-color: rgb(163,37,33);
+
   /*-webkit-filter: blur(3px);*/
 }
-
 #bt2 {
-  background:linear-gradient(0deg,rgba(33,163,48,0.3),rgba(33,163,48,0.3)),url("Images/Nightclub.jpg");
-  background-size:cover;
+  background-image: url("Images/Spotlight.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 125px 125px;
+  background-color: rgb(33,163,48);
 }
 #bt3 {
+  background-image: url("Images/MinTA.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 125px 125px;
   background-color: #2a21a3;
 }
 #bt4 {
+  background-image: url("Images/MinTaxi.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 105px 105px;
   background-color: #a36621;
 }
 
