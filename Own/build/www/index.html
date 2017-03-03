@@ -9,14 +9,14 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <link href="css/custom.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
 
   <link href="https://fonts.googleapis.com/css?family=Anton|Lobster" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
 
   <script type="text/javascript" src="js/cordova.js"></script>
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
 
@@ -24,6 +24,9 @@
 
 </head>
 <body>
+
+  <!--Home page with buttons for differing categories of places to visit -->
+
   <div data-role="page" id="home" data-theme="b">
 
     <div class="header" data-role="header">
@@ -44,19 +47,47 @@
           <a href="#/Action4" class="button" id="bt4">Taxis</a>
         </div>
       </div>
-
     </div>
+
+    <footer id="footer">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#home" data-transition="slide" data-icon="home">Home</a></li>
+          <li><a href="#favourites" data-transition="slide" data-icon="plus">Favourites</a></li>
+          <li><a href="#test" data-transition="slide" data-icon="star">About</a></li>
+        </ul>
+      </div>
+    </footer>
 
   </div>
-  <footer id="footer">
-    <div data-role="navbar">
-        <ul>
-          <li><a href="#home" data-transition="none" data-icon="home">Home</a></li>
-          <li><a href="#subjects" data-transition="none" data-icon="plus">Favourites</a></li>
-          <li><a href="#test" data-transition="none" data-icon="star">About</a></li>
-        </ul>
+
+  <!--Favourites Page with ListView for content -->
+
+  <div data-role="page" id="favourites" data-theme="b">
+    <div class="header" data-role="header">
+
+      <h1>Late Night Lincoln</h1>
+
     </div>
-  </footer>
+    <div data-role="content">
+      <p id="HomeInfo">
+        Here are a list of your favourited places in Lincoln. To view their information simply tap on whichever place you want to know about
+      </p>
+    </div>
+
+    <footer id="footer">
+
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#favourites" data-transition="slide" data-icon="plus">Favourites</a></li>
+          <li><a href="#test" data-transition="slide" data-icon="star">About</a></li>
+        </ul>
+      </div>
+
+    </footer>
+  </div>
+
 
 </body>
 

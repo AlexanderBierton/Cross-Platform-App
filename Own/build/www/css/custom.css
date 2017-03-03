@@ -21,15 +21,15 @@ h1 {
   color: white;
 }
 
-.header {
+/*.header {
   padding: 0;
   background-color: #373A52;
   background-size:cover;
   border-bottom: #2E3044 4px solid;
-}
+}*/
 
 .button-container > a {
-  font-family: 'Baloo', cursive;
+  /*font-family: 'Baloo', cursive;*/
   width: 50vw;
   height: 50vw;
   margin-top: auto;
@@ -95,7 +95,8 @@ li {
   width: 33%;
   text-align: center;
   background-color: #373A52;
-  border-right: #2E3044 4px solid;
+  border-right: #2E3044 2px solid;
+  border-left: #2E3044 2px solid;
 }
 
 li a{
