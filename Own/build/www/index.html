@@ -24,37 +24,34 @@
 
 </head>
 <body>
-
   <!--Home page with buttons for differing categories of places to visit -->
 
   <div data-role="page" id="home" data-theme="b">
-
-    <div class="header" data-role="header">
-
-      <h1>Late Night Lincoln</h1>
-
-    </div>
     <div data-role="content">
+      <div class="header" data-role="header">
+        <h1>Late Night Lincoln</h1>
+      </div>
+
       <p id="HomeInfo">
         Welcome to Late Night Lincoln. Choose a category of a place you would like to visit in Linoln.
       </p>
 
       <div class="menu-container">
         <div class="button-container">
-          <a href="#/Action1" class="button" id="bt1">Bars</a>
-          <a href="#/Action2" class="button" id="bt2">Night Clubs</a>
-          <a href="#/Action3" class="button" id="bt3">Takeaways</a>
-          <a href="#/Action4" class="button" id="bt4">Taxis</a>
+          <a href="#placeList" class="button" id="bt1" data-transition="pop">Bars</a>
+          <a href="#placeList" class="button" id="bt2" data-transition="pop">Night Clubs</a>
+          <a href="#placeList" class="button" id="bt3" data-transition="pop">Takeaways</a>
+          <a href="#placeList" class="button" id="bt4" data-transition="pop">Taxis</a>
         </div>
       </div>
     </div>
 
-    <footer data-role="footer" id="footer" data-id="foo1" data-position="fixed">
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
       <div data-role="navbar">
         <ul>
           <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
-          <li><a href="#favourites" data-transition="slide" data-icon="star">Favourites</a></li>
-          <li><a href="#test" data-transition="slide" data-icon="star">About</a></li>
+          <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="up">Favourites</a></li>
+          <li><a href="#about" data-transition="slide" data-icon="star">About</a></li>
         </ul>
       </div>
     </footer>
@@ -64,28 +61,72 @@
   <!--Favourites Page with ListView for content -->
 
   <div data-role="page" id="favourites" data-theme="b">
-    <div class="header" data-role="header">
-
-      <h1>Late Night Lincoln</h1>
-
-    </div>
     <div data-role="content">
-      <p id="HomeInfo">
+      <div class="header" data-role="header">
+        <h1>Late Night Lincoln</h1>
+      </div>
+
+      <p id="favInfo">
         Here are a list of your favourited places in Lincoln. To view their information simply tap on whichever place you want to know about
       </p>
     </div>
-
-    <footer data-role="footer" id="footer" data-id="foo1" data-position="fixed">
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
       <div data-role="navbar">
         <ul>
           <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
-          <li><a href="#favourites" data-transition="slide" data-icon="star">Favourites</a></li>
-          <li><a href="#test" data-transition="slide" data-icon="star">About</a></li>
+          <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="up">Favourites</a></li>
+          <li><a href="#about" data-transition="slide" data-icon="star">About</a></li>
         </ul>
       </div>
     </footer>
-
   </div>
+
+  <!--About Page - up for change or removal - i dunno which - fight me -->
+
+  <div data-role="page" id="about" data-theme="b">
+    <div data-role="content">
+      <div class="header" data-role="header">
+        <h1>Late Night Lincoln</h1>
+      </div>
+
+      <p id="aboutInfo">
+        Insert About info here
+      </p>
+    </div>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="reverse">Favourites</a></li>
+          <li><a href="#about" data-transition="slide" data-icon="star">About</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+  <!--Place List Page with ListView for all data retrieved from API-->
+
+  <div data-role="page" id="placeList" data-theme="b">
+    <div data-role="content">
+      <div class="header" data-role="header">
+        <h1>Late Night Lincoln</h1>
+      </div>
+
+      <p id="aboutInfo">
+        Insert About info here
+      </p>
+    </div>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="reverse">Favourites</a></li>
+          <li><a href="#about" data-transition="slide" data-icon="star">About</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
 
 
 </body>
