@@ -5,16 +5,16 @@ $(document).ready(function() {
 });
 
 document.addEventListener("deviceReady", function() {
-  console.log('Device Ready')
+  console.log('Device Ready');
 });
 
 $(document).on('click', '#bt1', function() {
-  console.log();('Handler for .click() called.');
+  console.log('Handler for .click() called.');
 });
 
 $(document).on('pagecreate', '#placeList',function(){
   $.getJSON(requestUrl, function(data) {
-
+    console.log(data);
   });
 
 });
