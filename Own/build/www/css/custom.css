@@ -8,7 +8,6 @@ body {
 h1 {
   font-family: 'Lobster', cursive;
   color: white;
-  font-size: 3em;
   text-align: center;
   padding: 10px 0px 10px 0px;
   margin: 0;
@@ -20,13 +19,6 @@ p {
   font-family: 'Baloo', cursive;
   color: white;
 }
-
-/*.header {
-  padding: 0;
-  background-color: #373A52;
-  background-size:cover;
-  border-bottom: #2E3044 4px solid;
-}*/
 
 .button-container > a {
   /*font-family: 'Baloo', cursive;*/
@@ -79,28 +71,6 @@ p {
    bottom:0px;
    width:100%;
 }
-ul {
-  display:table;
-  list-style: none;
-  width: 100vw;
-  margin: 0;
-  padding:0;
-  border: 0;
-}
-
-li {
-  padding: 10px 0px 10px 0px;
-  margin: 0;
-  display: table-cell;
-  width: 33%;
-  text-align: center;
-  background-color: #373A52;
-  border-right: #2E3044 2px solid;
-  border-left: #2E3044 2px solid;
-}
-
-li a{
-  font-family: 'Lobster', cursive;
-  color: white;
-  text-decoration: none;
+#listBtns {
+  background-color: #4C506D;
 }

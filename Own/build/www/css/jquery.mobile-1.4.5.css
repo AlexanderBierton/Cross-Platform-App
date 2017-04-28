@@ -3727,7 +3727,7 @@ fieldset.ui-controlgroup {
 .ui-listview > li h4,
 .ui-listview > li h5,
 .ui-listview > li h6 {
-	font-size: 1em;
+	font-size: 1.5em;
 	font-weight: bold;
 	display: block;
 	margin: .45em 0;

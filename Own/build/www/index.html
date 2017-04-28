@@ -19,6 +19,7 @@
   <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
+  <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4pllhe-rp7ZgsM_a-WIvv3KyC07BL6oM&libraries=places&callback=initmap"></script>-->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4pllhe-rp7ZgsM_a-WIvv3KyC07BL6oM&libraries=places"></script>
 
 
@@ -30,7 +31,7 @@
 
   <div data-role="page" id="home" data-theme="b">
     <div data-role="content">
-      <div class="header" data-role="header">
+      <div class="header" data-role="header"  id="Title">
         <h1>Late Night Lincoln</h1>
       </div>
 
@@ -53,7 +54,6 @@
         <ul>
           <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
           <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="up">Favourites</a></li>
-          <li><a href="#about" data-transition="slide" data-icon="star">About</a></li>
         </ul>
       </div>
     </footer>
@@ -64,7 +64,7 @@
 
   <div data-role="page" id="favourites" data-theme="b">
     <div data-role="content">
-      <div class="header" data-role="header">
+      <div class="header" data-role="header"  id="Title">
         <h1>Late Night Lincoln</h1>
       </div>
 
@@ -77,7 +77,6 @@
         <ul>
           <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
           <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="up">Favourites</a></li>
-          <li><a href="#about" data-transition="slide" data-icon="star">About</a></li>
         </ul>
       </div>
     </footer>
@@ -87,7 +86,7 @@
 
   <div data-role="page" id="about" data-theme="b">
     <div data-role="content">
-      <div class="header" data-role="header">
+      <div class="header" data-role="header" id="Title">
         <h1>Late Night Lincoln</h1>
       </div>
 
@@ -100,7 +99,6 @@
         <ul>
           <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
           <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="reverse">Favourites</a></li>
-          <li><a href="#about" data-transition="slide" data-icon="star">About</a></li>
         </ul>
       </div>
     </footer>
@@ -110,26 +108,21 @@
 
   <div data-role="page" id="placeList" data-theme="b">
     <div data-role="content">
-      <div class="header" data-role="header">
-        <h1>Late Night Lincoln</h1>
+
+
+
+      <div id="results">
+      </div>
+      <div id="map">
       </div>
 
-      <ul data-role="listview" data-filter="true">
-        <li>
-          <a href="#about" data-transition="pop"><img src="ASSETS/bar.jpg" />
-            <h3>Tester</h3>
-            <p>Tester Stuff on more stuff</p>
-          </a>
-        </li>
-      </ul>
 
     </div>
     <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
       <div data-role="navbar">
         <ul>
-          <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#home" onclick="removevar()" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
           <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="reverse">Favourites</a></li>
-          <li><a href="#about" data-transition="slide" data-icon="star">About</a></li>
         </ul>
       </div>
     </footer>
