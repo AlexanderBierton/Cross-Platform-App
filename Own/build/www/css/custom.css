@@ -19,6 +19,9 @@ p {
   font-family: 'Baloo', cursive;
   color: white;
 }
+a {
+  text-decoration: none !important;
+}
 
 .button-container > a {
   /*font-family: 'Baloo', cursive;*/
@@ -71,6 +74,44 @@ p {
    bottom:0px;
    width:100%;
 }
-#listBtns {
+#listBtn {
   background-color: #4C506D;
+}
+
+#placeImg {
+  max-height: 40vw;
+  max-width: 100vw;
+  overflow: hidden;
+}
+#coverImg {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+.gallery {
+  width: 32.1vw;
+  height: 32.1vw;
+  margin-top: auto;
+  float: left;
+  border: #4C506D 2px solid;
+}
+#rating {
+  font-family: 'Baloo', cursive;
+  text-align: center;
+  margin: 0;
+}
+#imgMessage {
+  font-family: 'Baloo', cursive;
+  text-align: center;
+  font-size: 2em;
+  padding: 10px 0px 10px 0px;
+  margin: 0;
+}
+#address {
+  text-align: center;
+}
+#map {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0;
 }

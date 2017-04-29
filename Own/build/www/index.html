@@ -19,8 +19,8 @@
   <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
-  <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4pllhe-rp7ZgsM_a-WIvv3KyC07BL6oM&libraries=places&callback=initmap"></script>-->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4pllhe-rp7ZgsM_a-WIvv3KyC07BL6oM&libraries=places"></script>
+
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4pllhe-rp7ZgsM_a-WIvv3KyC07BL6oM&libraries=places" defer></script>
 
 
   <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYSoP56moZ5ZgMbG7xVprnyiDRSoSbnH4&sensor=false"></script>-->
@@ -87,17 +87,27 @@
   <div data-role="page" id="about" data-theme="b">
     <div data-role="content">
       <div class="header" data-role="header" id="Title">
-        <h1>Late Night Lincoln</h1>
+        <div id="placeImg"></div>
       </div>
 
-      <p id="aboutInfo">
-        Insert About info here
-      </p>
+
+      <div id="placeTitle"></div>
+      <div id="rating"></div>
+      <div id="address"></div>
+      <div id="directions"></div>
+      <div id="phone"></div>
+      <div id="galStatus"></div>
+      <div id="Gallery">
+
+      </div>
+
+
     </div>
     <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
       <div data-role="navbar">
         <ul>
-          <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#placeList" onclick="backList()" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a></li>
+          <li><a href="#home" onclick="removevar()" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
           <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="reverse">Favourites</a></li>
         </ul>
       </div>
@@ -113,9 +123,6 @@
 
       <div id="results">
       </div>
-      <div id="map">
-      </div>
-
 
     </div>
     <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
