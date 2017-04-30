@@ -71,11 +71,16 @@
       <p id="favInfo">
         Here are a list of your favourited places in Lincoln. To view their information simply tap on whichever place you want to know about
       </p>
+      <a onclick="DeleteFavourites()" data-role="button" data-icon="delete" data-iconpos="right">Delete</a>
+
+      <div id="favResults"></div>
+
+
     </div>
     <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
       <div data-role="navbar">
         <ul>
-          <li><a href="#home" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#home" onclick="closeFav()" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
           <li><a href="#favourites" data-transition="slide" data-icon="star" data-direction="up">Favourites</a></li>
         </ul>
       </div>
@@ -90,6 +95,7 @@
         <div id="placeImg"></div>
       </div>
 
+      <a id="fav" data-role="button" data-icon="star" data-iconpos="right">Favourite</a>
 
       <div id="placeTitle"></div>
       <div id="rating"></div>
@@ -97,9 +103,7 @@
       <div id="directions"></div>
       <div id="phone"></div>
       <div id="galStatus"></div>
-      <div id="Gallery">
-
-      </div>
+      <div id="Gallery"></div>
 
 
     </div>

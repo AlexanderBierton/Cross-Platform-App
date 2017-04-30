@@ -6,6 +6,10 @@ var infowindow;
 var placeID = [];
 var placeType;
 
+var pd
+var pn
+var pv
+
 $(document).ready(function() {
   console.log('Ready');
 });
@@ -37,14 +41,27 @@ $(document).on('click', '#bt4', function() {
   initmap();
 });
 
-
+$(document).on('pagecreate', '#favourites', function(){
+  var favLength = localStorage.length;
+  var favHtml = "<ul data-role='listview' id ='favList'>"
+  for(i = 0; i < favLength; i++){
+    tempFav = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    favHtml += "<li>";
+    favHtml += "<a id='favListBtn'>"
+    favHtml += "<h1>" + tempFav[1] + "</h1>";
+    favHtml += "<p>"+tempFav[2]+"</p>";
+    favHtml == "</a>"
+    favHtml += "</li>";
+  }
+  favHtml += "</ul>";
+  $("#favResults").html(favHtml);
+  $("#favList").listview().listview('refresh');
+});
 
 var placeList = function() {
   var html = ""
   html += "<div>"
 }
-
-
 
 function initmap() {
   var linc = {lat: 53.2280, lng: -0.546055};
@@ -73,10 +90,10 @@ function initmap() {
         } else {
           var img = place.icon;
         }
-        console.log(place);
+        //console.log(place);
 
         result += "<li>";
-        result+= "<a id='listBtn' onclick='getDetails("+i+")' href='#about' data-transition='slide'>"
+        result += "<a id='listBtn' onclick='getDetails("+i+")' href='#about' data-transition='slide'>"
         result += "<h1>" + place.name + "</h1>";
         result += "<p>"+place.vicinity+"</p>";
         result == "</a>"
@@ -100,9 +117,40 @@ function getDetails(pos){
   })
 }
 
+$(document).on('pagecreate', '#about', function() {
+  $(document).on("click", "#fav", function() {
+    console.log(pd, pn, pv);
+    favourite(pd, pn, pv);
+  });
+});
+
 
 function parseDetails(data){
-  console.log(data);
+  //console.log(data);
+  dataLength = localStorage.length;
+  console.log("-------New page-------")
+  console.log("Length of Data: " + dataLength);
+  pd = data.id;
+  pn = data.name;
+  pv = data.vicinity;
+  console.log(pd, pn, pv);
+
+  if (dataLength != 0) {
+    for(i = 0, len = localStorage.length; i < len; i++){
+      var tempData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      if(tempData[0] == data.id){
+        document.getElementById("fav").style.background='Red';
+        console.log("Equal found");
+        break;
+      } else {
+        console.log("No equal found");
+        document.getElementById("fav").style.background='Green';
+      }
+      console.log(tempData[0]);
+    }
+  } else {
+    document.getElementById("fav").style.background='Green';
+  }
 
   if(data.photos != undefined) {
     var covImg = data.photos[0].getUrl({maxWidth: 1000, maxHeight: 1000});
@@ -113,10 +161,8 @@ function parseDetails(data){
     var stat = "<h2>Gallery</h2>"
     var phts = data.photos;
     for(i = 0; i < phts.length; i++){
-      console.log(data.photos[i]);
-      var galImg = data.photos[i].getUrl({maxWidth: 500, maxHeight: 500});
-      var popImg = data.photos[i].getUrl({maxWidth: 1000, maxHeight: 1000})
-      gall += "<img class='gallery' href='#img"+i+"' src='"+galImg+"' />"
+      var galImg = data.photos[i].getUrl({maxWidth: 250, maxHeight: 250});
+      gall += "<div class='gallHolder'><img class='gallery' href='#img"+i+"' src='"+galImg+"' /></div>"
     }
     $("#galStatus").html(stat);
     $("#Gallery").html(gall);
@@ -167,6 +213,60 @@ function parseDetails(data){
 
 
 }
+
+
+
+function favourite(id, name, vicinity) {
+  console.log(id, name, vicinity);
+  //localStorage.clear();
+
+  var len = localStorage.length;
+  var lenP = (len + 1);
+  console.log("Length: " + len + " Length Plus: " +lenP);
+
+
+  var clean = true;
+  if(len != 0){
+    for(i = 0, len = len; i < len; i++){
+      var tempData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      if(tempData[0] == id){
+        console.log("Removing Data");
+        localStorage.removeItem(localStorage.key(i));
+        document.getElementById("fav").style.background='Green';
+        fvtd = false;
+        clean = false;
+        break;
+      }
+    }
+    if (clean == true) {
+      console.log("Adding Data");
+      var details = JSON.stringify([id, name, vicinity])
+      localStorage.setItem("Place "+(lenP), details);
+      document.getElementById("fav").style.background='Red';
+    }
+  } else {
+    console.log("Adding Data 2");
+    var details = JSON.stringify([id, name, vicinity])
+    localStorage.setItem("Place "+(lenP), details);
+    document.getElementById("fav").style.background='Red';
+  }
+
+
+
+  for(i = 0, len = localStorage.length; i < len; i++){
+    var tempData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    console.log(tempData);
+  }
+
+  clean = true
+  console.log("Length of Data: " + localStorage.length);
+}
+
+function DeleteFavourites() {
+  console.log("Deleting...");
+  localStorage.clear();
+}
+
 
 function backList(){
   $("#placeImg").empty();
