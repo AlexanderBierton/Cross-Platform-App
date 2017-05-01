@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "com.lincoln.locallincoln"
+    id          = "com.lincoln.latenightlincoln"
     versionCode = "1"
     version     = "1.0.2" >
-    
+
     <!-- versionCode is optional and Android only -->
     <name>Local Lincoln</name>
     <description>
         A night out planner for the city of Lincoln
-    </description> 
+    </description>
     <author href="website" email="alexanderbierton@googlemail.com">
         Alexander Bierton
     </author>
@@ -17,7 +17,7 @@
       This allows your app to load assets from all *.phongap.com domains
     -->
 	<access origin="*" />
-	
+
 	 <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
@@ -49,11 +49,11 @@
 
     <!-- Plugins -->
 
-    <!-- Core plugins 
-	NOTE THAT ONLY IMPORT WHAT YOU NEED - WITH IOS 10 THERE ARE ADDITIONAL SECURITY FEATURES THAT MAY HINDER GETTING IT ONTO THE APP STORE 
-	
+    <!-- Core plugins
+	NOTE THAT ONLY IMPORT WHAT YOU NEED - WITH IOS 10 THERE ARE ADDITIONAL SECURITY FEATURES THAT MAY HINDER GETTING IT ONTO THE APP STORE
+
 	-->
-	
+
     <!-- Core plugins -->
     <!--<plugin name="cordova-plugin-camera" />
     <plugin name="cordova-plugin-media-capture" />-->
@@ -61,14 +61,17 @@
     <plugin name="cordova-plugin-device" />
     <plugin name="cordova-plugin-device-orientation" />
     <plugin name="cordova-plugin-dialogs" />
-	<plugin name="cordova-plugin-vibration" />
+	  <plugin name="cordova-plugin-vibration" />
     <!--<plugin name="cordova-plugin-geolocation" />-->
     <plugin name="cordova-plugin-inappbrowser" />
     <!--<plugin name="cordova-plugin-media" />-->
     <plugin name="cordova-plugin-network-information" />
     <plugin name="cordova-plugin-splashscreen" />
+    <plugin name="phonegap-plugin-push" source="npm">
+      <param name="226185701583" value="com.lincoln.latenightlincoln" />
+    </plugin>
 	<!--<plugin name="phonegap-plugin-push" />-->
-	
+
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins
 	THE BELOW IS AN EXAMPLE OF EXTRA SETTINGS FOR IOS1O SECURITY -->
@@ -77,7 +80,7 @@
 	</plugin>
 -->
     <!-- Third party plugins -->
- 
+
 
 	<!--//these are generic not good enough for a live build - you will nedd to be os and device specific (android can use 9 slice png)-->
 	<icon src="icon.png" />

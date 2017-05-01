@@ -1,7 +1,7 @@
 
 
 body {
-  background-color: #4C506D;
+  background-color: #303B4D !important;
   margin: 0;
 }
 
@@ -22,7 +22,9 @@ p {
 a {
   text-decoration: none !important;
 }
-
+#FooterColour {
+  background-color: #1E2B42;
+}
 .button-container > a {
   /*font-family: 'Baloo', cursive;*/
   width: 50vw;
@@ -35,37 +37,35 @@ a {
   color: White;
   font-size: 1.8em;
   padding-top: 35%;
-  border: #4C506D 2px solid;
+  border: #303B4D 2px solid;
 }
 #bt1 {
   background-image: url("Images/MinBarTwo.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 125px 125px;
-  background-color: rgb(163,37,33);
-
-  /*-webkit-filter: blur(3px);*/
+  background-color: #9A6569;
 }
 #bt2 {
   background-image: url("Images/Spotlight.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 125px 125px;
-  background-color: rgb(33,163,48);
+  background-color: #5C8356;
 }
 #bt3 {
   background-image: url("Images/MinTA.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 125px 125px;
-  background-color: #2a21a3;
+  background-color: #485469;
 }
 #bt4 {
   background-image: url("Images/MinTaxi.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 105px 105px;
-  background-color: #a36621;
+  background-color: #9E8B67;
 }
 
 #footer {
@@ -74,9 +74,9 @@ a {
    bottom:0px;
    width:100%;
 }
-#listBtn {
+/*#listBtn {
   background-color: #4C506D;
-}
+}*/
 #favListBtn {
   background-color: #4C506D;
 }
@@ -106,7 +106,7 @@ a {
   height: 32.1vw;
   margin-top: auto;
   float: left;
-  border: #4C506D 2px solid;
+  border: #303B4D 2px solid;
   overflow: hidden;
 }
 .gallery {

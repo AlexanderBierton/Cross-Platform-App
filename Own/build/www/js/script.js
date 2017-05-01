@@ -4,6 +4,7 @@ var map;
 var service;
 var infowindow;
 var placeID = [];
+var favID = [];
 var placeType;
 
 var pd
@@ -38,6 +39,7 @@ $(document).on('click', '#bt3', function() {
 
 $(document).on('click', '#bt4', function() {
   console.log("Btn4 click")
+  placeType = "taxi_stand";
   initmap();
 });
 
@@ -45,18 +47,21 @@ $(document).on('pagecreate', '#favourites', function(){
   var favLength = localStorage.length;
   var favHtml = "<ul data-role='listview' id ='favList'>"
   for(i = 0; i < favLength; i++){
+    favDet = localStorage.getItem(localStorage.key(i));
     tempFav = JSON.parse(localStorage.getItem(localStorage.key(i)));
     favHtml += "<li>";
-    favHtml += "<a id='favListBtn'>"
+    favHtml += "<a id='favListBtn')>"
     favHtml += "<h1>" + tempFav[1] + "</h1>";
     favHtml += "<p>"+tempFav[2]+"</p>";
     favHtml == "</a>"
     favHtml += "</li>";
+    favID.push(favDet);
   }
   favHtml += "</ul>";
   $("#favResults").html(favHtml);
   $("#favList").listview().listview('refresh');
 });
+
 
 var placeList = function() {
   var html = ""
@@ -81,6 +86,9 @@ function initmap() {
   service.nearbySearch(request, function(results, status){
     if (status == google.maps.places.PlacesServiceStatus.OK) {
 
+
+      var favCheck = JSON.parse(localStorage.getItem(localStorage.key(i)));
+
       var result ="<ul data-role='listview' id ='resList'>"
 
       for (var i = 0; i < results.length; i++) {
@@ -90,21 +98,49 @@ function initmap() {
         } else {
           var img = place.icon;
         }
-        //console.log(place);
+        console.log(place);
 
         result += "<li>";
-        result += "<a id='listBtn' onclick='getDetails("+i+")' href='#about' data-transition='slide'>"
+        if(place.opening_hours != undefined){
+          if(place.opening_hours.open_now == true){
+            result += "<a class='listBtnOpen' onclick='getDetails("+i+")' href='#about' data-transition='slide'>"
+          } else {
+            result += "<a class='listBtnClosed' onclick='getDetails("+i+")' href='#about' data-transition='slide'>"
+          }
+        } else {
+          result += "<a class='listBtnUndefined' onclick='getDetails("+i+")' href='#about' data-transition='slide'>"
+        }
+
         result += "<h1>" + place.name + "</h1>";
         result += "<p>"+place.vicinity+"</p>";
         result == "</a>"
         result += "</li>";
 
         placeID.push(place);
+
       }
 
       result += "</ul>";
       $("#results").html(result);
       $('#resList').listview().listview('refresh');
+
+      plUndefined = document.getElementsByClassName("listBtnUndefined");
+      plOpen = document.getElementsByClassName("listBtnOpen");
+      plClosed = document.getElementsByClassName("listBtnClosed");
+      plFav = document.getElementsByClassName("listBtnFav");
+      console.log(plOpen.length)
+      for(i = 0; i < plOpen.length; i++){
+        plOpen[i].style.backgroundColor = "#5C8356";
+      }
+      for(i = 0; i < plClosed.length; i++){
+        plClosed[i].style.backgroundColor = "#9A6569";
+      }
+      for(i = 0; i < plUndefined.length; i++){
+        plUndefined[i].style.backgroundColor = "#485469";
+      }
+      for(i = 0; i < plFav.length; i++){
+        plFav[i].style.backgroundColor = "#9E8B67";
+      }
     }
   })
 }
@@ -139,17 +175,17 @@ function parseDetails(data){
     for(i = 0, len = localStorage.length; i < len; i++){
       var tempData = JSON.parse(localStorage.getItem(localStorage.key(i)));
       if(tempData[0] == data.id){
-        document.getElementById("fav").style.background='Red';
+        document.getElementById("fav").style.background='#9A6569';
         console.log("Equal found");
         break;
       } else {
         console.log("No equal found");
-        document.getElementById("fav").style.background='Green';
+        document.getElementById("fav").style.background='#5C8356';
       }
       console.log(tempData[0]);
     }
   } else {
-    document.getElementById("fav").style.background='Green';
+    document.getElementById("fav").style.background='#5C8356';
   }
 
   if(data.photos != undefined) {
@@ -169,7 +205,9 @@ function parseDetails(data){
 
   } else {
     covImg = "<h3 id='imgMessage'>No Image Availble</h3>"
-    $("#placeImg").html(disImg);
+    stat = "<h2>No Images Available</h2>"
+    $("#placeImg").html(covImg);
+    $("#galStatus").html(stat);
   }
 
   if (data.rating != undefined) {
@@ -218,7 +256,6 @@ function parseDetails(data){
 
 function favourite(id, name, vicinity) {
   console.log(id, name, vicinity);
-  //localStorage.clear();
 
   var len = localStorage.length;
   var lenP = (len + 1);
@@ -233,14 +270,23 @@ function favourite(id, name, vicinity) {
         console.log("Removing Data");
         localStorage.removeItem(localStorage.key(i));
         document.getElementById("fav").style.background='Green';
-        fvtd = false;
         clean = false;
         break;
       }
     }
     if (clean == true) {
+      for(i = 0, len = len; i < len; i++){
+          var tempName = localStorage.key(i);
+          console.log(tempName);
+          if(tempName == "Place "+(lenP)){
+            lenP += 1;
+            console.log(tempName + " - New - " + lenP);
+            i = -1;
+          }
+      }
       console.log("Adding Data");
       var details = JSON.stringify([id, name, vicinity])
+      console.log(JSON.stringify(details));
       localStorage.setItem("Place "+(lenP), details);
       document.getElementById("fav").style.background='Red';
     }
@@ -264,7 +310,12 @@ function favourite(id, name, vicinity) {
 
 function DeleteFavourites() {
   console.log("Deleting...");
+  $("#favResults").empty();
   localStorage.clear();
+}
+
+function closeFav() {
+  location.reload(true);
 }
 
 
@@ -288,3 +339,59 @@ function removevar() {
   $("#results").empty();
   location.reload(true);
 }
+
+function setupPush() {
+  var push = PushNotification.init({
+    "android": {
+      "senderID": "226185701583"
+    },
+    "ios": {
+      "sound": true,
+      "alert": true,
+      "badge": true,
+      "categories": {
+        "invite": {
+          "yes": {
+            "callback": "app.accept", "title": "Accept", "foreground": true, "destructive": false
+          },
+          "no": {
+            "callback": "app.reject", "title": "Reject", "foreground": true, "destructive": false
+          },
+          "maybe": {
+            "callback": "app.maybe", "title": "Maybe", "foreground": true, "destructive": false
+          }
+        },
+        "delete": {
+          "yes": {
+            "callback": "app.doDelete", "title": "Delete", "foreground": true, "destructive": true
+          },
+          "no": {
+            "callback": "app.cancel", "title": "Cancel", "foreground": true, "destructive": false
+          }
+        }
+      }
+    },
+    "windows": {}
+  });
+  push.on('registration', function(data) {
+    console.log("registration event: " + data.registrationId);
+    var oldRegId = localStorage.getItem('registrationId');
+    if (oldRegId !== data.registrationId) {
+      // Save new registration ID
+      localStorage.setItem('registrationId', data.registrationId);
+      // Post registrationId to your app server as the value has changed
+    }
+  });
+  push.on('error', function(e) {
+    console.log("push error = " + e.message);
+  });
+  push.on('notification', function(data) {
+    console.log('notification event');
+    navigator.notification.alert(
+      data.message, // message
+      null, // callback
+      data.title, // title
+      'Ok' // buttonName
+    );
+  });
+}//end function
