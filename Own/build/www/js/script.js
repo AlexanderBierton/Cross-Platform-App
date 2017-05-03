@@ -5,6 +5,7 @@ var service;
 var infowindow;
 var placeID = [];
 var favID = [];
+var galImages = []
 var placeType;
 
 var pd
@@ -64,8 +65,9 @@ $(document).on('pagecreate', '#favourites', function(){
 
 
 var placeList = function() {
-  var html = ""
-  html += "<div>"
+  console.log("PLACELIST");
+  var html = "";
+  html += "<div>";
 }
 
 function initmap() {
@@ -198,7 +200,9 @@ function parseDetails(data){
     var phts = data.photos;
     for(i = 0; i < phts.length; i++){
       var galImg = data.photos[i].getUrl({maxWidth: 250, maxHeight: 250});
-      gall += "<div class='gallHolder'><img class='gallery' href='#img"+i+"' src='"+galImg+"' /></div>"
+      var larImg = data.photos[i].getUrl({maxWidth: 1000, maxHeight: 1000});
+      galImages.push(larImg);
+      gall += "<a class='gallHolder' href='#photoViewer' onclick='getLPhoto("+i+")' )><img class='gallery' src='"+galImg+"' /></a>"
     }
     $("#galStatus").html(stat);
     $("#Gallery").html(gall);
@@ -328,6 +332,7 @@ function backList(){
   $("#phone").empty();
   $("#galStatus").empty();
   $("#Gallery").empty();
+  galImages = [];
 }
 
 function openMaps(lat, long) {
@@ -340,58 +345,13 @@ function removevar() {
   location.reload(true);
 }
 
-function setupPush() {
-  var push = PushNotification.init({
-    "android": {
-      "senderID": "226185701583"
-    },
-    "ios": {
-      "sound": true,
-      "alert": true,
-      "badge": true,
-      "categories": {
-        "invite": {
-          "yes": {
-            "callback": "app.accept", "title": "Accept", "foreground": true, "destructive": false
-          },
-          "no": {
-            "callback": "app.reject", "title": "Reject", "foreground": true, "destructive": false
-          },
-          "maybe": {
-            "callback": "app.maybe", "title": "Maybe", "foreground": true, "destructive": false
-          }
-        },
-        "delete": {
-          "yes": {
-            "callback": "app.doDelete", "title": "Delete", "foreground": true, "destructive": true
-          },
-          "no": {
-            "callback": "app.cancel", "title": "Cancel", "foreground": true, "destructive": false
-          }
-        }
-      }
-    },
-    "windows": {}
-  });
-  push.on('registration', function(data) {
-    console.log("registration event: " + data.registrationId);
-    var oldRegId = localStorage.getItem('registrationId');
-    if (oldRegId !== data.registrationId) {
-      // Save new registration ID
-      localStorage.setItem('registrationId', data.registrationId);
-      // Post registrationId to your app server as the value has changed
-    }
-  });
-  push.on('error', function(e) {
-    console.log("push error = " + e.message);
-  });
-  push.on('notification', function(data) {
-    console.log('notification event');
-    navigator.notification.alert(
-      data.message, // message
-      null, // callback
-      data.title, // title
-      'Ok' // buttonName
-    );
-  });
-}//end function
+function getLPhoto(num){
+  console.log("getting Image")
+  var imgHTML = "";
+  imgHTML += "<img id='largeImage' src='"+galImages[num]+"'/>";
+  $("#photoLarge").html(imgHTML);
+}
+
+function backPhoto() {
+  $("photoLarge").empty();
+}
