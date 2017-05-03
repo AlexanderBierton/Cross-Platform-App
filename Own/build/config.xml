@@ -6,7 +6,7 @@
     version     = "1.0.2" >
 
     <!-- versionCode is optional and Android only -->
-    <name>Local Lincoln</name>
+    <name>Late Night Lincoln</name>
     <description>
         A night out planner for the city of Lincoln
     </description>

@@ -7,6 +7,7 @@ var placeID = [];
 var favID = [];
 var galImages = []
 var placeType;
+var reloadApp = false;
 
 var pd
 var pn
@@ -191,7 +192,7 @@ function parseDetails(data){
   }
 
   if(data.photos != undefined) {
-    var covImg = data.photos[0].getUrl({maxWidth: 1000, maxHeight: 1000});
+    var covImg = data.photos[0].getUrl({maxWidth: 2000, maxHeight: 2000});
     disImg = "<img id='coverImg' src='"+covImg+"' />";
     $("#placeImg").html(disImg);
 
@@ -199,7 +200,7 @@ function parseDetails(data){
     var stat = "<h2>Gallery</h2>"
     var phts = data.photos;
     for(i = 0; i < phts.length; i++){
-      var galImg = data.photos[i].getUrl({maxWidth: 250, maxHeight: 250});
+      var galImg = data.photos[i].getUrl({maxWidth: 1000, maxHeight: 1000});
       var larImg = data.photos[i].getUrl({maxWidth: 1000, maxHeight: 1000});
       galImages.push(larImg);
       gall += "<a class='gallHolder' href='#photoViewer' onclick='getLPhoto("+i+")' )><img class='gallery' src='"+galImg+"' /></a>"
@@ -342,6 +343,7 @@ function openMaps(lat, long) {
 function removevar() {
   console.log("Bye");
   $("#results").empty();
+  reloadApp = true;
   location.reload(true);
 }
 
