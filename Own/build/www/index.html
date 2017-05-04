@@ -8,55 +8,163 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link href="css/custom.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
 
   <link href="https://fonts.googleapis.com/css?family=Anton|Lobster" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
 
-  <script type="text/javascript" src="js/cordova.js"></script>
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
 
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYSoP56moZ5ZgMbG7xVprnyiDRSoSbnH4&sensor=false"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4pllhe-rp7ZgsM_a-WIvv3KyC07BL6oM&libraries=places" defer></script>
+
+
+  <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYSoP56moZ5ZgMbG7xVprnyiDRSoSbnH4&sensor=false"></script>-->
 
 </head>
 <body>
+  <!--Home page with buttons for differing categories of places to visit -->
+
   <div data-role="page" id="home" data-theme="b">
-
-    <div class="header" data-role="header">
-
-      <h1>Late Night Lincoln</h1>
-
-    </div>
     <div data-role="content">
+      <div class="header" data-role="header"  id="Title">
+        <h1>Late Night Lincoln</h1>
+      </div>
+
       <p id="HomeInfo">
         Welcome to Late Night Lincoln. Choose a category of a place you would like to visit in Linoln.
       </p>
 
       <div class="menu-container">
         <div class="button-container">
-          <a href="#/Action1" class="button" id="bt1">Bars</a>
-          <a href="#/Action2" class="button" id="bt2">Night Clubs</a>
-          <a href="#/Action3" class="button" id="bt3">Takeaways</a>
-          <a href="#/Action4" class="button" id="bt4">Taxis</a>
+          <a href="#placeList" class="button" id="bt1" data-transition="pop">Bars</a>
+          <a href="#placeList" class="button" id="bt2" data-transition="pop">Night Clubs</a>
+          <a href="#placeList" class="button" id="bt3" data-transition="pop">Takeaways</a>
+          <a href="#placeList" class="button" id="bt4" data-transition="pop">Taxis</a>
         </div>
+      </div>
+    </div>
+
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#home" id="FooterColour" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#favourites" id="FooterColour" data-transition="slide" data-icon="star" data-direction="up">Favourites</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </div>
+
+  <!--Favourites Page with ListView for content -->
+
+  <div data-role="page" id="favourites" data-theme="b">
+    <div data-role="content">
+      <div class="header" data-role="header"  id="Title">
+        <h1>Late Night Lincoln</h1>
+      </div>
+
+      <p id="favInfo">
+        Here are a list of your favourited places in Lincoln. To view their information simply tap on whichever place you want to know about
+      </p>
+      <a onclick="DeleteFavourites()" data-role="button" data-icon="delete" data-iconpos="right">Delete</a>
+
+      <div id="favResults"></div>
+
+
+    </div>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#home" id="FooterColour" onclick="closeFav()" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#favourites" id="FooterColour" data-transition="slide" data-icon="star" data-direction="up">Favourites</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+  <!--About Page - up for change or removal - i dunno which - fight me -->
+
+  <div data-role="page" id="about" data-theme="b">
+    <div data-role="content">
+      <div class="header" data-role="header" id="Title">
+        <div id="placeImg"></div>
+      </div>
+
+      <a id="fav" data-role="button" data-icon="star" data-iconpos="right">Favourite</a>
+
+      <div id="placeTitle"></div>
+      <div id="rating"></div>
+      <div id="address"></div>
+      <div id="directions"></div>
+      <div id="phone"></div>
+      <div id="galStatus"></div>
+      <div id="Gallery"></div>
+
+
+    </div>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#placeList" id="FooterColour" onclick="backList()" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a></li>
+          <li><a href="#home" id="FooterColour" onclick="removevar()" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#favourites" id="FooterColour" data-transition="slide" data-icon="star" data-direction="reverse">Favourites</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+  <!--Place List Page with ListView for all data retrieved from API-->
+
+  <div data-role="page" id="placeList" data-theme="b">
+    <div data-role="content">
+
+
+
+      <div id="results">
       </div>
 
     </div>
-
-  </div>
-  <footer id="footer">
-    <div data-role="navbar">
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+      <div data-role="navbar">
         <ul>
-          <li><a href="#home" data-transition="none" data-icon="home">Home</a></li>
-          <li><a href="#subjects" data-transition="none" data-icon="plus">Favourites</a></li>
-          <li><a href="#test" data-transition="none" data-icon="star">About</a></li>
+          <li><a href="#home" id="FooterColour" onclick="removevar()" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#favourites" id="FooterColour" data-transition="slide" data-icon="star" data-direction="reverse">Favourites</a></li>
         </ul>
+      </div>
+    </footer>
+  </div>
+
+
+
+
+  <div data-role="page" id="photoViewer" data-theme="b">
+    <div data-role="content">
+
+      <div id="photoLarge">
+
+      </div>
+
     </div>
-  </footer>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#about" id="FooterColour" onclick="backPhoto" data-icon="arrow-l">Back</a></li>
+          <li><a href="#home" id="FooterColour" onclick="removevar()" data-transition="slide" data-direction="reverse" data-icon="home">Home</a></li>
+          <li><a href="#favourites" id="FooterColour" data-transition="slide" data-icon="star" data-direction="reverse">Favourites</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+
+
+
+
 
 </body>
 
